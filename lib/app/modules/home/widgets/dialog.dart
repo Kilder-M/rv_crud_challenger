@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:rv_crud_challenger/app/modules/home/controllers/home_controller.dart';
+import 'package:rv_crud_challenger/app/modules/home/views/update_view.dart';
 
 AlertDialog alertDialogProduct(
     BuildContext context, HomeController _controller,) {
@@ -12,7 +13,7 @@ AlertDialog alertDialogProduct(
       TextButton(
         onPressed: () {
           Get.back();
-          //Get.to(const UpdateView(), arguments: product);
+          Get.to(const UpdateView(),);
         },
         child: const Text('Editar'),
       ),
