@@ -10,6 +10,7 @@ class TextFormProduct extends StatelessWidget {
   final double? textHeigth;
   final double? width;
   final double? heigth;
+  final int? maxLenght;
   final TextInputType? keyboardType;
   final void Function(String?)? onSaved;
   final String Function(String?)? validator;
@@ -39,7 +40,7 @@ class TextFormProduct extends StatelessWidget {
       this.hintText,
       this.hintStyle,
       this.suffixIcon,
-      this.textEditingController, this.initialValue})
+      this.textEditingController, this.initialValue, this.maxLenght})
       : super(key: key);
 
   @override
@@ -68,7 +69,7 @@ class TextFormProduct extends StatelessWidget {
             height: heigth ?? 40,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(25),
-              color: Colors.grey[200],
+              color: Colors.grey[300],
             ),
             child: Padding(
               padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
