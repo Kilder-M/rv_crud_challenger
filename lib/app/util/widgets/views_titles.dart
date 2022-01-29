@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
 
-Widget viewsTitles({required String title,bool? isButtonAdd}) {
+Widget viewsTitles(
+    {required String title, bool? isButtonAdd, final void Function()? onBack}) {
   return Padding(
-    padding: const EdgeInsets.only(bottom: 20.0),
-    child:  Row(
+    padding: const EdgeInsets.only(bottom: 10.0),
+    child: Row(
       children: [
+        (onBack != null)
+            ? GestureDetector(
+                onTap: onBack,
+                child: const Icon(
+                  Icons.chevron_left,
+                  size: 28,
+                ),
+              )
+            : Container(),
         Text(
           title,
           style: const TextStyle(
@@ -12,12 +22,18 @@ Widget viewsTitles({required String title,bool? isButtonAdd}) {
             fontWeight: FontWeight.w300,
           ),
         ),
-        (isButtonAdd == true) ? GestureDetector(
-          child:  Padding(
-            padding:  const EdgeInsets.only(left: 3.0),
-            child: Icon(Icons.add_circle,color: Colors.green[400], size: 24,), 
-          ),
-        ) : Container()
+        (isButtonAdd == true)
+            ? GestureDetector(
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 3.0),
+                  child: Icon(
+                    Icons.add_circle,
+                    color: Colors.green[400],
+                    size: 24,
+                  ),
+                ),
+              )
+            : Container()
       ],
     ),
   );
