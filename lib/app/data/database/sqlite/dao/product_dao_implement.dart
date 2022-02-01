@@ -8,7 +8,7 @@ class ProductDAOImplement implements ProductDAO {
 
   @override
   Future<List<Product>> find() async {
-    _db = await Connection.get();
+    _db = await Connection.getproduct();
     List<Map<String, dynamic>> result = await _db!.query('product');
     List<Product> list = List.generate(result.length, (index) {
       var linha = result[index];
@@ -19,14 +19,14 @@ class ProductDAOImplement implements ProductDAO {
 
   @override
   remove(int id) async {
-    _db = await Connection.get();
+    _db = await Connection.getproduct();
     String sql = 'DELETE FROM product WHERE id = ?';
     _db!.rawDelete(sql, [id]);
   }
 
   @override
   save(Product product) async {
-    _db = await Connection.get();
+    _db = await Connection.getproduct();
     String sql;
     if (product.id == null) {
       sql = 'INSERT INTO product (name,details,photo) VALUES (?,?,?)';
