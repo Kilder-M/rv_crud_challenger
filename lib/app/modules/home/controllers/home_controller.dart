@@ -1,20 +1,30 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rv_crud_challenger/app/data/domain/entities/product.dart';
+import 'package:rv_crud_challenger/app/data/domain/services/product_service.dart';
+import 'package:rv_crud_challenger/app/modules/home/views/update_view.dart';
 
 class HomeController extends GetxController {
-  //TODO: Implement HomeController
+  final _service = ProductService();
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
+  var list = Future.value(<Product>[]).obs;
+  HomeController(){
+    refreshList();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  refreshList(){
+    list.value = _service.find();
   }
 
-  @override
-  void onClose() {}
-  void increment() => count.value++;
+  save(Product product){
+    _service.save(product);
+  }
+
+  remove(int id){
+    _service.remove(id);
+    refreshList();
+  }
+  goToForm(BuildContext context,[Product? product]){
+    // Get.to(UpdateView(),arguments: product).then(refreshList);
+  }
 }
