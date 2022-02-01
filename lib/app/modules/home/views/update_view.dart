@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:rv_crud_challenger/app/data/domain/entities/product.dart';
 import 'package:rv_crud_challenger/app/modules/home/controllers/home_controller.dart';
 import 'package:rv_crud_challenger/app/modules/home/views/home_view.dart';
 import 'package:rv_crud_challenger/app/util/widgets/text_form_product.dart';
@@ -11,7 +12,7 @@ class UpdateView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    //Product product = Get.arguments;
+    Product product = (Get.arguments == null) ? Product() : Get.arguments;
     var form = GlobalKey<FormState>();
     return Scaffold(
       backgroundColor: Colors.grey[100],
@@ -27,8 +28,10 @@ class UpdateView extends GetView<HomeController> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-               viewsTitles(title: 'Editar Produto',onBack: ()=> Get.back(),),
-               
+                viewsTitles(
+                  title: 'Editar Produto',
+                  onBack: () => Get.back(),
+                ),
                 Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Column(
@@ -37,46 +40,58 @@ class UpdateView extends GetView<HomeController> {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          CircleAvatar(radius: 50,),
-                          GestureDetector(onTap: () {},child: Icon(Icons.camera_enhance_outlined,color: Colors.grey[600],))
+                          const CircleAvatar(
+                            radius: 50,
+                          ),
+                          GestureDetector(
+                              onTap: () {},
+                              child: Icon(
+                                Icons.camera_enhance_outlined,
+                                color: Colors.grey[600],
+                              ))
                         ],
                       ),
                       TextFormProduct(
                         title: 'Nome',
-                        // initialValue: product.title,
+                        validator: controller.validateName,
+                        initialValue: product.name ?? '',
                         onSaved: (value) {
-                          //  product.title = value;
+                          product.name = value;
                         },
                       ),
                       TextFormProduct(
                         title: 'Descrição',
-                        
-                        //initialValue: product.type,
+                        validator: controller.validateDetails,
+                        initialValue: product.details,
                         onSaved: (value) {
-                          //   product.type = value;
+                          product.details = value;
                         },
                       ),
                       ElevatedButton(
                         onPressed: () {
+                          product.photo = 'teste';
+                          form.currentState!.validate();
                           form.currentState!.save();
-                          //controller.save(product);
-                          Get.to(const HomeView());
-                          showDialog(
-                            context: context,
-                            builder: (context) => AlertDialog(
-                              content: const Text(
-                                'Produto atualizado! ',
-                              ),
-                              actions: [
-                                TextButton(
-                                  onPressed: () {
-                                    Get.back();
-                                  },
-                                  child: const Text('OK'),
+                          if (controller.nameIsValid && controller.detailsIsValid) {
+                            controller.save(product);
+                            Get.to(const HomeView());
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                content: const Text(
+                                  'Produto atualizado! ',
                                 ),
-                              ],
-                            ),
-                          );
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Get.back();
+                                    },
+                                    child: const Text('OK'),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }
                         },
                         child: const Text('Salvar'),
                       )
