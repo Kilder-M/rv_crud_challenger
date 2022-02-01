@@ -29,7 +29,7 @@ class ProductDAOImplement implements ProductDAO {
     _db = await Connection.get();
     String sql;
     if (product.id == null) {
-      sql = 'INSERT INTO product (name,details,photo) VALUE (?,?,?)';
+      sql = 'INSERT INTO product (name,details,photo) VALUES (?,?,?)';
       _db!.rawInsert(sql,[product.name,product.details,product.photo]);
 
     }else {
