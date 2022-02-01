@@ -42,34 +42,49 @@ class HomeView extends GetView<HomeController> {
                             child: CircularProgressIndicator(),
                           );
                         } else {
-                          var list = snapshot.data;
-                          return ListView.builder(
-                            itemCount: list!.length,
-                            itemBuilder: (context, index) {
-                              var product = list[index];
-                              return GestureDetector(
-                                onTap: () => Get.to(
-                                  const ProductDetailsView(),
+                          var list = snapshot.data.obs;
+                          if (list.value!.isEmpty) {
+                            return const Center(
+                              child: Padding(
+                                padding: EdgeInsets.only(bottom: 50.0),
+                                child: Text(
+                                  'Nenhum Produto Cadastrado ! ',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w300,
+                                  ),
                                 ),
-                                child: CardForProductList(
-                                  title: product.name,
-                                  subTitle: product.details,
-                                  onTapIcon: () {
-                                    showDialog(
-                                      context: context,
-                                      builder: (context) {
-                                        return alertDialogProduct(
-                                          context,
-                                          controller,
-                                          product,
-                                        );
-                                      },
-                                    );
-                                  },
-                                ),
-                              );
-                            },
-                          );
+                              ),
+                            );
+                          } else {
+                            return ListView.builder(
+                              itemCount: list.value!.length,
+                              itemBuilder: (context, index) {
+                                var product = list.value![index];
+                                return GestureDetector(
+                                  onTap: () => Get.to(
+                                    const ProductDetailsView(),
+                                  ),
+                                  child: CardForProductList(
+                                    title: product.name,
+                                    subTitle: product.details,
+                                    onTapIcon: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return alertDialogProduct(
+                                            context,
+                                            controller,
+                                            product,
+                                          );
+                                        },
+                                      );
+                                    },
+                                  ),
+                                );
+                              },
+                            );
+                          }
                         }
                       },
                     ),
