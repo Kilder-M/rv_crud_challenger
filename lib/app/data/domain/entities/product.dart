@@ -9,7 +9,7 @@ class Product{
 
    factory Product.fromMap(Map<String, dynamic> json) => Product(
         name: json["name"],
-        details: json["description"],
+        details: json["details"],
         photo: json["photo"],
     );
 }
