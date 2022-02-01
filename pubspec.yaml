@@ -10,8 +10,8 @@ dependencies:
   get: 4.6.1
   flutter: 
     sdk: flutter
-  sqflite:
-  path: 
+  sqflite: ^2.0.2
+  path: ^1.8.0
 
 
 dev_dependencies: 
