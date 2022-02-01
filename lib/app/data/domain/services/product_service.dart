@@ -5,8 +5,8 @@ import 'package:rv_crud_challenger/app/data/domain/exceptions/domain_layer_excep
 class ProductService{
   final _dao = ProductDAOImplement();
     save(Product product){
-    validateNome(product.name);
-    validateDescricao(product.details);
+    validateName(product.name);
+    validateDetails(product.details);
     _dao.save(product);
 
   }
@@ -18,7 +18,7 @@ class ProductService{
   Future<List<Product>>find()async{
     return _dao.find();
   }
-  validateNome(String? name){
+  validateName(String? name){
    var max = 50;
    var min =3;
 
@@ -34,7 +34,7 @@ class ProductService{
     
  }
 
- validateDescricao(String? details){
+ validateDetails(String? details){
    var max = 300;
    var min =5;
 
