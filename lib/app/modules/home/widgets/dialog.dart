@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:rv_crud_challenger/app/data/domain/entities/product.dart';
 import 'package:rv_crud_challenger/app/modules/home/controllers/home_controller.dart';
 import 'package:rv_crud_challenger/app/modules/home/views/update_view.dart';
 
 AlertDialog alertDialogProduct(
-    BuildContext context, HomeController _controller,) {
+    BuildContext context, HomeController _controller, Product product) {
   return AlertDialog(
     title: const Text(
       'O que deseja fazer ?',
@@ -13,7 +14,7 @@ AlertDialog alertDialogProduct(
       TextButton(
         onPressed: () {
           Get.back();
-          Get.to(const UpdateView(),);
+          _controller.goToForm(product);
         },
         child: const Text('Editar'),
       ),
@@ -29,7 +30,7 @@ AlertDialog alertDialogProduct(
               actions: [
                 TextButton(
                   onPressed: () {
-                   // _controller.remove(product.id);
+                    _controller.remove(product.id!);
                     Get.back();
                     showDialog(
                       context: context,
