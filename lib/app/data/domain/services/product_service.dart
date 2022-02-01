@@ -34,15 +34,15 @@ class ProductService{
     
  }
 
- validateDescricao(String? decricao){
+ validateDescricao(String? details){
    var max = 300;
    var min =5;
 
-   if(decricao == null){
+   if(details == null){
      throw  DomainLayerException("O email é obrigatório.");
-   }else if(decricao.length > max){
+   }else if(details.length > max){
      throw  DomainLayerException('A decrição deve possuiur no máximo $max caracters');
-   }else if(decricao.length < min){
+   }else if(details.length < min){
      throw  DomainLayerException('A decrição deve possuiur no mínimo $min caracters');
    }
  }
