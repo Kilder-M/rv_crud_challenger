@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 Widget viewsTitles(
-    {required String title, bool? isButtonAdd, final void Function()? onBack}) {
+    {required String title, bool? isButtonAdd, final void Function()? onBack,final void Function()? onTapAddIcon}) {
   return Padding(
     padding: const EdgeInsets.only(bottom: 10.0),
     child: Row(
@@ -24,6 +24,7 @@ Widget viewsTitles(
         ),
         (isButtonAdd == true)
             ? GestureDetector(
+                onTap: onTapAddIcon,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 3.0),
                   child: Icon(
