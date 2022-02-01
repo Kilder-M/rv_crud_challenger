@@ -54,12 +54,13 @@ class CardForProductList extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(right:5.0),
-                child: CircleAvatar(radius: 30 ,),
+              const Padding(
+                padding: EdgeInsets.only(right: 5.0),
+                child: CircleAvatar(
+                  radius: 30,
+                ),
               ),
               Column(
-                // mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
@@ -79,9 +80,13 @@ class CardForProductList extends StatelessWidget {
                     child: SizedBox(
                       width: 170,
                       child: Text(
-                      subTitle ?? '',
-                      maxLines: 2,
-                        style: TextStyle(fontSize: 14, color: Colors.grey[500],overflow: TextOverflow.ellipsis,),
+                        subTitle ?? '',
+                        maxLines: 2,
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.grey[500],
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
                     ),
                   ),
@@ -103,12 +108,12 @@ class CardForProductList extends StatelessWidget {
                         size: 22,
                       ),
                     ),
-                   const SizedBox(height: 12,),
-                    Text(
-                      'R\$ $price',
-                      style: const TextStyle(fontSize: 16),
-                      textDirection: TextDirection.rtl,
-                    )
+                    //  const SizedBox(height: 12,),
+                    // Text(
+                    //   'R\$ $price',
+                    //   style: const TextStyle(fontSize: 16),
+                    //   textDirection: TextDirection.rtl,
+                    // )
                   ],
                 ),
               ),
