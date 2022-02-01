@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:rv_crud_challenger/app/data/domain/entities/product.dart';
+import 'package:rv_crud_challenger/app/modules/home/views/product_details_view.dart';
 import 'package:rv_crud_challenger/app/modules/home/widgets/dialog.dart';
 import 'package:rv_crud_challenger/app/util/widgets/card_for_product_list.dart';
 import 'package:rv_crud_challenger/app/util/widgets/views_titles.dart';
@@ -28,7 +29,9 @@ class HomeView extends GetView<HomeController> {
                 viewsTitles(
                     title: 'Lista de Produtos',
                     isButtonAdd: true,
-                    onTapAddIcon: () {}),
+                    onTapAddIcon: () {
+                      controller.goToForm();
+                    }),
                 Expanded(
                   child: SizedBox(
                     child: FutureBuilder<List<Product>>(
@@ -45,13 +48,9 @@ class HomeView extends GetView<HomeController> {
                             itemBuilder: (context, index) {
                               var product = list[index];
                               return GestureDetector(
-                                onTap: () {
-                                  print(product.details);
-
-                                  //  Get.to(
-                                  //   // const ProductDetailsView(),
-                                  // );
-                                },
+                                onTap: () => Get.to(
+                                  const ProductDetailsView(),
+                                ),
                                 child: CardForProductList(
                                   title: product.name,
                                   subTitle: product.details,
@@ -62,6 +61,7 @@ class HomeView extends GetView<HomeController> {
                                         return alertDialogProduct(
                                           context,
                                           controller,
+                                          product,
                                         );
                                       },
                                     );
