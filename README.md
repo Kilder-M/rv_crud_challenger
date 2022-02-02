@@ -1,16 +1,15 @@
-# rv_crud_challenger
+# rv_challenger
 
-A new Flutter project.
+Aplicativo com framework flutter que lista determinados produtos no qual voce pode editar,excluir e ver detalhes de um produto. Para a persistência dos dados, eu utilizei, Sqlite. Além dissso, foi utilizado GetX Pattern para arquitetura e estrutura de dados.
 
-## Getting Started
+## Para instalar o projeto.
 
-This project is a starting point for a Flutter application.
+1- Para rodar o projeto é necessário ter o flutter instalado na sua máquina, para isso, siga o tutorial da documentação oficial: https://flutter.dev/docs/get-started/install
 
-A few resources to get you started if this is your first Flutter project:
+2- Com o flutter instalado, rode o comando "flutter doctor" e tenha certeza que está tudo ok.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+3- Conecte um aparelho no seu computador e tenha certeza que ele está com a opção de Ancoragem USB habilitada OU rode o emulador do android studio.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+4- Após resolver os warnings/issues do passo 2, e executar o passo 3 com sucesso, clone o projeto e abra um terminal no diretorio onde vc clonou-o.
+
+5- Agora basta executar o comando "flutter run" e o aplicativo será instalado e executado (Somente em dispositivos android).
