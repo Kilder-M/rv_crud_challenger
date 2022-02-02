@@ -19,8 +19,8 @@ class ProductService{
     return _dao.find();
   }
   validateName(String? name){
-   var max = 50;
-   var min =3;
+   var max = 30;
+   var min =2;
 
    if(name == null){
      throw  DomainLayerException("O nome é obrigatório.");
@@ -35,15 +35,15 @@ class ProductService{
  }
 
  validateDetails(String? details){
-   var max = 300;
-   var min =5;
+   var max = 200;
+   var min =10;
 
    if(details == null){
      throw  DomainLayerException("O email é obrigatório.");
    }else if(details.length > max){
      throw  DomainLayerException('A decrição deve possuiur no máximo $max caracters');
    }else if(details.length < min){
-     throw  DomainLayerException('A decrição deve possuiur no mínimo $min caracters');
+     throw  DomainLayerException('A decrição deve possuir no mínimo $min caracters');
    }
  }
 
