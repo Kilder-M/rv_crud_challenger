@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 class CardForProductList extends StatelessWidget {
@@ -54,10 +56,18 @@ class CardForProductList extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Padding(
-                padding: EdgeInsets.only(right: 5.0),
-                child: CircleAvatar(
-                  radius: 30,
+              Padding(
+                padding: const EdgeInsets.only(right: 5.0),
+                child: SizedBox(
+                  width: 60,
+                  height: 60,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(100),
+                    child: photoUrl != null
+                        ? Image.memory(base64.decode(photoUrl ?? ''),
+                            fit: BoxFit.cover)
+                        :  CircleAvatar(child: const Icon(Icons.production_quantity_limits),backgroundColor: Colors.grey[200],),
+                  ),
                 ),
               ),
               Column(

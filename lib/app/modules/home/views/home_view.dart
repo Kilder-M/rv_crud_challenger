@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -64,10 +65,12 @@ class HomeView extends GetView<HomeController> {
                                 return GestureDetector(
                                   onTap: () => Get.to(
                                     const ProductDetailsView(),
+                                    arguments: product
                                   ),
                                   child: CardForProductList(
                                     title: product.name,
                                     subTitle: product.details,
+                                    photoUrl: product.urlPhoto,
                                     onTapIcon: () {
                                       showDialog(
                                         context: context,
@@ -98,3 +101,5 @@ class HomeView extends GetView<HomeController> {
     );
   }
 }
+
+

@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:rv_crud_challenger/app/data/domain/entities/product.dart';
 import 'package:rv_crud_challenger/app/modules/home/views/update_view.dart';
 
 class CardProductDetails extends StatelessWidget {
@@ -16,7 +19,9 @@ class CardProductDetails extends StatelessWidget {
   final String? productWidth;
   final String? productPrice;
   final String? productRating;
+  final Product product;
   final void Function()? onTapIcon;
+  final void Function()? onTapButton;
 
   const CardProductDetails(
       {Key? key,
@@ -33,7 +38,9 @@ class CardProductDetails extends StatelessWidget {
       this.photoUrl,
       this.photoWidth,
       this.photoHeight,
-      this.onTapIcon})
+      this.onTapIcon,
+      required this.product,
+      this.onTapButton})
       : super(key: key);
 
   @override
@@ -58,21 +65,37 @@ class CardProductDetails extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: CircleAvatar(
-                radius: 50,
+              padding: const EdgeInsets.all(15.0),
+              child: SizedBox(
+                width: 100,
+                height: 100,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(100),
+                  child: photoUrl != null
+                      ? Image.memory(base64.decode(photoUrl ?? ''),
+                          fit: BoxFit.cover)
+                      : const CircleAvatar(
+                          child: Icon(
+                            Icons.production_quantity_limits,
+                          ),
+                        ),
+                ),
               ),
             ),
-             //leftText('Nome',product.title ?? ''),
-             //leftText('Decrição',product.description ?? '',isDescription: true),
+            Text(
+              product.name ?? '',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w400,
+                overflow: TextOverflow.clip
+              ),
+            ),
+            SizedBox(height: 30,),
+            leftText('Descrição:', product.details ?? '', isDescription: true),
             Padding(
-              padding: const EdgeInsets.only(top: 8.0),
+              padding: const EdgeInsets.only(top: 40),
               child: ElevatedButton(
-                onPressed: () {
-                  Get.to(
-                    const UpdateView(),
-                  );
-                },
+                onPressed: onTapButton,
                 child: const Text('Editar'),
               ),
             ),
@@ -92,10 +115,11 @@ Widget leftText(String definition, String details, {bool? isDescription}) {
           : CrossAxisAlignment.center,
       children: [
         Text(
-          '$definition: ',
+          definition,
           maxLines: 4,
-          style: TextStyle(fontSize: 14, color: Colors.grey[800]),
+          style: TextStyle(fontSize: 14, color: Colors.grey[800],fontWeight: FontWeight.w400),
         ),
+        SizedBox(width: 8,),
         SizedBox(
             width: 150,
             child: Text(details,
