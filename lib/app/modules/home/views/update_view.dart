@@ -103,8 +103,8 @@ class UpdateView extends GetView<HomeController> {
                                 showDialog(
                                   context: context,
                                   builder: (context) => AlertDialog(
-                                    content: const Text(
-                                      'Produto atualizado! ',
+                                    content:  Text(
+                                      product.id == null ? 'Produto criado! ' : 'Produto atualizado!',
                                     ),
                                     actions: [
                                       TextButton(
