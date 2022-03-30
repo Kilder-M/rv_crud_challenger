@@ -1,4 +1,4 @@
-# rv_challenger
+# CRUD Sqlite
 
 Aplicativo com framework flutter que lista determinados produtos no qual voce pode editar,excluir e ver detalhes de um produto. Para a persistência dos dados, eu utilizei, Sqlite. Além dissso, foi utilizado GetX Pattern para a estrutura de pastas.
 
