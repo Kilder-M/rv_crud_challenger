@@ -66,7 +66,7 @@ class TextFormProduct extends StatelessWidget {
           ),
           Container(
             width: width ?? double.infinity,
-            height: heigth ?? 40,
+            height: heigth ?? 50,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(25),
               color: Colors.grey[300],
